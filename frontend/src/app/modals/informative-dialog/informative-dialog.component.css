@@ -1,0 +1,14 @@
+.linked-in{
+    position: absolute;
+    left: 20px;
+    width: 300px;
+     padding: 10px;
+}
+.github{
+    position: absolute;
+    left: 80px;
+    width: 300px;
+     padding: 10px;
+     cursor: pointer;
+
+}

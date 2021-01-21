@@ -1,0 +1,17 @@
+.dropdown-toggle, .dropdown-item{
+    cursor: pointer;
+}
+input{
+   margin-right: 20px; 
+}
+
+img{
+    max-height: 50px;
+    border: 2px solid #fff;
+    display: inline;
+}
+
+.nav-item{
+    cursor: pointer;
+}
+
