@@ -1,35 +1,45 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p>
-        The reason this project was made, that I would like to present a part of my knowlage gained in the field of the Spring boot Rest API.
-        It is not recommended to use on mobile or mobile view, because it is not responsive yet. Naturally, the application continually will be improved,
-        so the responsive view and other improvements are expectable. To keep it simple, the e-mail registration is not available. If you want to enter as admin, you can do that with:
-      </p>
-      <p>
-        Username: admin <br>
-        Password: Admin
-      </p>
-      <p>
-        You can reach my LinkdIn profile and the project Spring boot source code below.
-      </p>
-      
-  </div>
-  <div class="modal-footer">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>
+    The purpose of this project is to showcase my knowledge in the field of Spring Boot Rest API. However, please
+    note that it is not recommended
+    for use on mobile devices or mobile views as it is not yet responsive. Of course, the application will be
+    continuously improved, and responsive
+    views and other enhancements can be expected in the future.
+  </p>
+  <p>
+    Please note that logging in or registering may take a few minutes to execute, as the server is deployed on
+    render.com
+    using the free version. This may result in slow startup.
+  </p>
+  <p>
+    To keep things simple, email registration is
+    not available. If you wish to log in as an admin, you can use the following credentials:
+  </p>
+  <p>
+    Username: admin <br>
+    Password: Admin
+  </p>
+  <p>
+    You can reach my LinkdIn profile and the project Spring boot source code below.
+  </p>
+
+</div>
+<div class="modal-footer">
   <div class="linked-in">
     <a href="https://www.linkedin.com/in/attila-papp-6bb70b1b7/">
-    <i class="fa fa-linkedin-square fa-3x" style="color: #2867B2;"></i> </a>
+      <i class="fa fa-linkedin-square fa-3x" style="color: #2867B2;"></i> </a>
   </div>
   <div class="github">
-    <a style="color: black;"
-     href="https://github.com/attilapapp0521/spring-boot-rest-api-dating-app">
-     <i class="fa fa-github-square fa-3x"></i> </a>
+    <a style="color: black;" href="https://github.com/attilapapp0521/spring-boot-dating-app">
+      <i class="fa fa-github-square fa-3x"></i> </a>
   </div>
-  
-    
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
-  </div>
+
+
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div>
