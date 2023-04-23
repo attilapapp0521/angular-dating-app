@@ -11,7 +11,7 @@ import { MessageService } from 'src/app/_services/message.service';
   styleUrls: ['./member-messages.component.css']
 })
 export class MemberMessagesComponent implements OnInit {
-  @ViewChild('messageForm') messageForm: NgForm; 
+  @ViewChild('messageForm') messageForm: NgForm;
   @Input() messages: Message[];
   @Input() username: string;
  messageContent: string;
@@ -22,13 +22,13 @@ export class MemberMessagesComponent implements OnInit {
     document.body.classList.add('bg-img-in1');
   }
 
-  sendMessage(){
+  sendMessage(): void{
     this.messageService.sendMessage(this.username, this.messageContent).subscribe(
-      message =>{
+      message => {
           this.messages.push(message);
           this.messageForm.reset();
-      })
+      });
   }
-  
-  
+
+
 }

@@ -14,15 +14,17 @@ export class TextInputComponent implements ControlValueAccessor {
       this.ngControl.valueAccessor = this;
   }
   writeValue(obj: any): void {
-   
+    // TODO document why this method 'writeValue' is empty
+
+
   }
 
   registerOnChange(fn: any): void {
-   
+
   }
 
   registerOnTouched(fn: any): void {
-   
+
   }
 
 }

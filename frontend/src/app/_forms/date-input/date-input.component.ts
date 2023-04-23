@@ -17,21 +17,20 @@ export class DateInputComponent implements ControlValueAccessor {
     this.bsConfig = {
       containerClass: 'theme-red',
       dateInputFormat: 'DD MMMM YYYY'
-    }
+    };
    }
   writeValue(obj: any): void {
-   
+    // TODO document why this method 'writeValue' is empty
+
+
   }
 
   registerOnChange(fn: any): void {
-    
+
   }
 
   registerOnTouched(fn: any): void {
-   
+
   }
-
-
- 
 
 }

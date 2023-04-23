@@ -18,24 +18,23 @@ export class ErrorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
-      catchError(error => 
-        {
-          if(error){
+      catchError(error => {
+          if (error){
             switch (error.status) {
               case 400:
-                
-                if(error.error.fieldErrors){
+
+                if (error.error.fieldErrors){
                   const modalStateError = [];
-                  for(const key in error.error.fieldErrors){
-                    if(error.error.fieldErrors){
+                  for (const key in error.error.fieldErrors){
+                    if (error.error.fieldErrors){
 
                       modalStateError.push(error.error.fieldErrors[key].message);
-                    } 
+                    }
                   }
                   throw modalStateError.flat();
-                }else if(typeof(error.error) === 'object'){
-            
-                    this.toastr.error(error.statusText);     
+                }else if (typeof(error.error) === 'object'){
+
+                    this.toastr.error(error.error.message);
                 }else{
                   this.toastr.error(error.error, error.status);
                 }
@@ -48,7 +47,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                   this.router.navigateByUrl('/not-found');
                   break;
                 case 500:
-                  const navigationExtras : NavigationExtras = {state : {error: error.error}}
+                  const navigationExtras: NavigationExtras = {state : {error: error.error}};
                   this.router.navigateByUrl('/server-error', navigationExtras);
                   break;
               default:
@@ -59,6 +58,6 @@ export class ErrorInterceptor implements HttpInterceptor {
           }
           return throwError(error);
         })
-    )
+    );
   }
 }

@@ -18,13 +18,13 @@ export class AdminGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if(user.roles.includes('ADMIN') || user.roles.includes('MODERATOR')) {
+        if (user.roles.includes('ADMIN') || user.roles.includes('MODERATOR')) {
           return true;
         }
         this.toastr.error('You cannot enter this area');
-       
+
       })
-    )
+    );
   }
-  
+
 }

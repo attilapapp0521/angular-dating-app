@@ -30,6 +30,13 @@ speed-measure-plugin*.json
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+*.xml
 
 # misc
 /.sass-cache
@@ -44,3 +51,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+# ESLint
+.eslintcache

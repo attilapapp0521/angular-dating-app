@@ -79,7 +79,7 @@ import { CookieService } from 'ngx-cookie-service';
     ReactiveFormsModule,
     SharedModule,
   ],
-  exports:[
+  exports: [
     BsDropdownModule,
     ToastrModule
   ],
@@ -89,6 +89,6 @@ import { CookieService } from 'ngx-cookie-service';
     [CookieService]
   ],
      bootstrap: [AppComponent],
-  
+
 })
 export class AppModule { }

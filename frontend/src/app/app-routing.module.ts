@@ -19,7 +19,7 @@ import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {
-    path:'',
+    path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [

@@ -11,27 +11,28 @@ import { AccountService } from '../_services/account.service';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   registerMode = false;
-  //users: any;
+  // users: any;
 
   constructor(private accountService: AccountService,
               private router: Router) { }
-              
+
   ngOnDestroy(): void {
     document.body.classList.remove('bg-img-home');
   }
 
   ngOnInit(): void {
     this.accountService.currentUser$.subscribe(
-      user =>{
-          if(user !== null){
+      user => {
+          if (user !== null){
               this.router.navigateByUrl('/members');
           }
-      })
+      });
     document.body.classList.remove('bg-img-in1');
     document.body.classList.add('bg-img-home');
-    //this.getUsers();
+    // this.getUsers();
   }
 
+  // tslint:disable-next-line:typedef
   registerToggle(){
     this.registerMode = !this.registerMode;
   }
@@ -41,7 +42,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     .subscribe(users => this.users = users);
   }*/
 
+  // tslint:disable-next-line:typedef
   cancelRegisterMode(event: boolean){
-       this.registerMode = event;  
+       this.registerMode = event;
   }
 }

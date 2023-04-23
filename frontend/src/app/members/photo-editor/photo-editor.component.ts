@@ -22,7 +22,7 @@ export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
   user: User;
 
-  constructor(private accountService: AccountService, private memberService: MembersService) { 
+  constructor(private accountService: AccountService, private memberService: MembersService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
@@ -30,29 +30,29 @@ export class PhotoEditorComponent implements OnInit {
     this.initializeUploader();
   }
 
-  fileOverBase(e: any) {
+  fileOverBase(e: any): void {
     this.hasBaseDropzoneOver = e;
   }
 
-  setMainPhoto(photo: Photo) {
+  setMainPhoto(photo: Photo): void {
     this.memberService.setMainPhoto(photo.id).subscribe(() => {
       this.user.photoUrl = photo.url;
       this.accountService.setCurrentUser(this.user);
       this.member.photoUrl = photo.url;
       this.member.photos.forEach(p => {
-        if (p.isMain) p.isMain = false;
-        if (p.id === photo.id) p.isMain = true;
-      })
-    })
-  } 
-
-  deletePhoto(photoId: number) {
-    this.memberService.deletePhoto(photoId).subscribe(() => {
-      this.member.photos = this.member.photos.filter(x => x.id !== photoId);
-    })
+        if (p.isMain) { p.isMain = false; }
+        if (p.id === photo.id) { p.isMain = true; }
+      });
+    });
   }
 
-  initializeUploader() {
+  deletePhoto(photoId: number): void {
+    this.memberService.deletePhoto(photoId).subscribe(() => {
+      this.member.photos = this.member.photos.filter(x => x.id !== photoId);
+    });
+  }
+
+  initializeUploader(): void {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'users/add-photo',
       authToken: 'Bearer ' + this.user.token,
@@ -65,18 +65,18 @@ export class PhotoEditorComponent implements OnInit {
 
     this.uploader.onAfterAddingFile = (file) => {
       file.withCredentials = false;
-    }
+    };
 
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const photo: Photo = JSON.parse(response);
         this.member.photos.push(photo);
-         if (JSON.parse(response).main) {
+        if (JSON.parse(response).main) {
            this.user.photoUrl = photo.url;
            this.member.photoUrl = photo.url;
          }
       }
-    }
+    };
   }
 
 }

@@ -20,7 +20,7 @@ export class MemberListComponent implements OnInit {
   user: User;
   genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}];
 
-  constructor(private memberService: MembersService) { 
+  constructor(private memberService: MembersService) {
         this.userParams = this.memberService.getUserParams();
     }
 
@@ -29,21 +29,21 @@ export class MemberListComponent implements OnInit {
     this.loadMembers();
   }
 
-  loadMembers(){
+  loadMembers(): void{
     this.memberService.setUserParams(this.userParams);
     this.memberService.getMembers(this.userParams).subscribe(
       response => {
           this.members = response.result;
           this.pagination = response.pagination;
-      })
+      });
   }
 
-  resetFilters(){
+  resetFilters(): void{
     this.userParams = this.memberService.resetUserParams();
     this.loadMembers();
   }
 
-  pageChanged(event: any){
+  pageChanged(event: any): void{
     this.userParams.page = event.page;
     this.memberService.setUserParams(this.userParams);
     this.loadMembers();

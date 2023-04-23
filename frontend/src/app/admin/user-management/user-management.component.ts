@@ -20,43 +20,43 @@ bsModalRef: BsModalRef;
       this.getUsersWithRoles();
   }
 
-  getUsersWithRoles(){
+  getUsersWithRoles(): void{
     this.adminService.getUsersWithRoles().subscribe(
       users => {
         this.users = users;
       }
-    )
+    );
   }
 
-  openRolesModal(user: User){
+  openRolesModal(user: User): void{
       const config = {
           class: 'modal-dialog-centered',
           initialState: {
             user,
             roles: this.getRolesArray(user)
           }
-      }
-    
-    this.bsModalRef = this.modalService.show(RolesModalComponent,config);
-    this.bsModalRef.content.updateSelectedRoles.subscribe(
+      };
+
+      this.bsModalRef = this.modalService.show(RolesModalComponent, config);
+      this.bsModalRef.content.updateSelectedRoles.subscribe(
       values => {
         const rolesToUpdate = {
-          roles: [...values.filter(el => el.checked === true).map(el =>el.name)]
+          roles: [...values.filter(el => el.checked === true).map(el => el.name)]
         };
-        if(rolesToUpdate){
+        if (rolesToUpdate){
           this.adminService.updateUserRoles(user.username, rolesToUpdate.roles).subscribe(
             () => {
-              user.roles = [...rolesToUpdate.roles]
+              user.roles = [...rolesToUpdate.roles];
             }
-          )
+          );
         }
       }
 
-      )
-    
+      );
+
   }
 
-  private getRolesArray(user){
+  private getRolesArray(user): any[]{
       const roles = [];
       const userRoles = user.roles;
       const availableRoles: any[] = [
@@ -67,19 +67,19 @@ bsModalRef: BsModalRef;
 
       availableRoles.forEach(role => {
         let isMatch = false;
-        for(const userRole of userRoles){
-          if(role.name === userRole){
+        for (const userRole of userRoles){
+          if (role.name === userRole){
             isMatch = true;
             role.checked = true;
             roles.push(role);
             break;
           }
         }
-        if(!isMatch){
+        if (!isMatch){
           role.checked = false;
           roles.push(role);
         }
-      })
+      });
       return roles;
   }
 

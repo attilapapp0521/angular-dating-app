@@ -23,10 +23,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.initializeForm();
     this.maxDate = new Date();
-    this.maxDate.setFullYear(this.maxDate.getFullYear() -18);
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
   }
 
-  initializeForm(){
+  initializeForm(): void{
     this.registerForm =  this.formBuilder.group({
       gender: ['male'],
       username: ['', Validators.required],
@@ -34,32 +34,32 @@ export class RegisterComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      password: ['', [Validators.required, 
+      password: ['', [Validators.required,
       Validators.minLength(4), Validators.maxLength(25)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]]
-    })
+    });
   }
 
   matchValues(matchTo: string): ValidatorFn{
     return (control: AbstractControl) => {
-      return control?.value === control?.parent?.controls[matchTo].value 
-      ? null : {isMatching: true}
-    }
+      return control?.value === control?.parent?.controls[matchTo].value
+      ? null : {isMatching: true};
+    };
   }
 
-  register(){
+  register(): void{
     this.accountService.register(this.registerForm.value).subscribe(
       response => {
-        this.toastr.success('Registration was successful')
+        this.toastr.success('Registration was successful');
         this.cancelRegister.emit(false);
       }, error => {
-        
-        this.validationErrors = error
-      })
+
+        this.validationErrors = error;
+      });
   }
 
-  cancel(){
-    this.toastr.warning('Registration canceled')
+  cancel(): void{
+    this.toastr.warning('Registration canceled');
     this.cancelRegister.emit(false);
   }
 

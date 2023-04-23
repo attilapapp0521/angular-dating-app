@@ -13,34 +13,34 @@ import { ConfirmService } from '../_services/confirm.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
- 
-  
+
+
 
   constructor(public accoutService: AccountService,
-                private router: Router,
-                private toastr: ToastrService,
-                private confirmService: ConfirmService,
-                private cookieService: CookieService) { }
+              private router: Router,
+              private toastr: ToastrService,
+              private confirmService: ConfirmService,
+              private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    if(window.localStorage.getItem('firstEnter') === null){
-      window.localStorage.setItem('firstEnter',"false");
+    if (window.localStorage.getItem('firstEnter') === null){
+      window.localStorage.setItem('firstEnter', 'false');
       this.about();
-    }   
+    }
   }
 
-  login(){
+  login(): void{
       this.accoutService.login(this.model).subscribe(
         response => {
           this.router.navigateByUrl('/members');
-        })
+        });
   }
-  logout(){
+  logout(): void{
     this.accoutService.logout();
     this.router.navigateByUrl('/');
   }
 
-  about(){
+  about(): void{
       this.confirmService.informative();
   }
 

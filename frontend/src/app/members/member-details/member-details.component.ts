@@ -30,11 +30,11 @@ export class MemberDetailsComponent implements OnInit {
     this.route.data.subscribe(
       data => {
         this.member = data.member;
-      })
+      });
     this.route.queryParams.subscribe(
       params => {
           params.tab ? this.selectTab(params.tab) : this.selectTab(0);
-      })
+      });
     this.galleryOptions = [
       {
         width: '500px',
@@ -44,55 +44,55 @@ export class MemberDetailsComponent implements OnInit {
         imageAnimation: NgxGalleryAnimation.Slide,
         preview: false
       }
-    ]
+    ];
     this.galleryImages = this.getImages();
   }
 
   getImages(): NgxGalleryImage[]{
-    const imageUrls =[];
-    for(const photo of this.member.photos){
+    const imageUrls = [];
+    for (const photo of this.member.photos){
       imageUrls.push({
         small: photo?.url,
         medium: photo?.url,
         large: photo?.url
-      })
+      });
     }
     return imageUrls;
   }
 
-  loadMember(){
+  loadMember(): void{
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(
       member => {
         this.member = member;
         console.log(this.member.username);
-       
-        
-    })
+
+
+    });
   }
 
-  loadMessages(){
+  loadMessages(): void{
     this.messageService.getMessageThread(this.member.username).subscribe(
       messages => {
         this.messages = messages;
       }
-    )
+    );
   }
-  selectTab(tabId: number){
+  selectTab(tabId: number): void{
     this.memberTabs.tabs[tabId].active = true;
   }
 
-  onTabActivated(data: TabDirective){
+  onTabActivated(data: TabDirective): void{
     this.activeTab = data;
-    if(this.activeTab.heading === 'Messages' && this.messages.length === 0){
+    if (this.activeTab.heading === 'Messages' && this.messages.length === 0){
         this.loadMessages();
     }
   }
 
-  addLike(member: Member){
+  addLike(member: Member): void{
     this.memberService.addLike(member.username).subscribe(
   () => {
       this.toastr.success('You have liked ' + member.knownAs);
-  })
+  });
 }
 
 }

@@ -16,15 +16,17 @@ export class ConfirmDialogComponent implements OnInit {
   constructor(public bfModalRef: BsModalRef) { }
 
   ngOnInit(): void {
-    
+    // TODO document why this method 'ngOnInit' is empty
+
+
   }
 
-  confirm(){
+  confirm(): void{
     this.result = true;
     this.bfModalRef.hide();
   }
 
-  decline(){
+  decline(): void{
     this.result = false;
     this.bfModalRef.hide();
   }

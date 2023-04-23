@@ -12,24 +12,24 @@ export class ConfirmService {
 
   constructor(private modalService: BsModalService) { }
 
-  confirm(title = 'Confirmation', 
-    message = 'Are you sure you want to do this? When you choose yes than any change is lose!', 
-    btnOkText = 'Ok', 
-    btnCancelText = 'Cancel'): Observable<boolean> {
+  confirm(title = 'Confirmation',
+          message = 'Are you sure you want to do this? When you choose yes than any change is lose!',
+          btnOkText = 'Ok',
+          btnCancelText = 'Cancel'): Observable<boolean> {
       const config = {
         initialState: {
-          title, 
+          title,
           message,
           btnOkText,
           btnCancelText
         }
-      }
-    this.bsModelRef = this.modalService.show(ConfirmDialogComponent, config);
-    
-    return new Observable<boolean>(this.getResult());
+      };
+      this.bsModelRef = this.modalService.show(ConfirmDialogComponent, config);
+
+      return new Observable<boolean>(this.getResult());
   }
 
-  private getResult() {
+  private getResult(): (observer: any) => {unsubscribe(): void} {
     return (observer) => {
       const subscription = this.bsModelRef.onHidden.subscribe(() => {
         observer.next(this.bsModelRef.content.result);
@@ -37,14 +37,14 @@ export class ConfirmService {
       });
 
       return {
-        unsubscribe() {
+        unsubscribe(): void {
           subscription.unsubscribe();
         }
-      }
-    }
+      };
+    };
   }
 
-  informative() {
+  informative(): void {
     const initialState = {
       title: 'Hi!'
     };

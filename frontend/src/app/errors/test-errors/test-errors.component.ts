@@ -9,69 +9,69 @@ import { environment } from 'src/environments/environment';
 })
 export class TestErrorsComponent implements OnInit {
   baseUrl = environment.apiUrl;
-  validationsErrors : string[] = [];
+  validationsErrors: string[] = [];
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
- 
-    
+
+
   }
 
-  get404Error(){
+  get404Error(): void{
     this.http.get(this.baseUrl + 'buggy/not-found').subscribe(
       response => {
         console.log(response);
-      },error => {
+      }, error => {
         console.log(error);
       }
-      
-    )
+
+    );
   }
 
-  get400Error(){
+  get400Error(): void{
     this.http.get(this.baseUrl + 'buggy/bad-request').subscribe(
       response => {
         console.log(response);
-      },error => {
+      }, error => {
         console.log(error);
       }
-      
-    )
+
+    );
   }
 
-  get500Error(){
+  get500Error(): void{
     this.http.get(this.baseUrl + 'buggy/server-error').subscribe(
       response => {
         console.log(response);
-      },error => {
+      }, error => {
         console.log(error);
       }
-      
-    )
+
+    );
   }
 
-  get401Error(){
+  get401Error(): void{
     this.http.get(this.baseUrl + 'buggy/auth').subscribe(
       response => {
         console.log(response);
-      },error => {
+      }, error => {
         console.log(error);
       }
-      
-    )
+
+    );
   }
 
-  get400ValidationError(){
+  get400ValidationError(): void{
     this.http.post(this.baseUrl + 'account/register', {}).subscribe(
       response => {
         console.log(response);
-      },error => {
+      }, error => {
         console.log(error);
         this.validationsErrors = error;
       }
-      
-    )
+
+    );
   }
 
 }

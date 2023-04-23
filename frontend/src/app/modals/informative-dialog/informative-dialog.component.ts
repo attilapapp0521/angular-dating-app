@@ -10,14 +10,14 @@ export class InformativeDialogComponent implements OnInit {
 
   title: string;
   closeBtnName: string;
-  
- 
+
+
   constructor(public bsModalRef: BsModalRef) {}
-  
- 
+
+
 
   ngOnInit(): void {
-  
+
   }
 
 }

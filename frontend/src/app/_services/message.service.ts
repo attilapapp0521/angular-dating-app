@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Message } from '../_models/message.model';
 import { getPaginatedResult, getPaginationsHeaders } from './paginationHelper';
+import {PaginatedResult} from '../_models/pagination.model';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +14,21 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  getMessages(pageNumber, pageSize, container){
+  getMessages(pageNumber, pageSize, container): Observable<PaginatedResult<Message[]>>{
     let params = getPaginationsHeaders(pageNumber, pageSize);
     params = params.append('container', container);
     return getPaginatedResult<Message[]>(this.baseUrl + 'messages', params, this.http);
   }
 
-  getMessageThread(username: string){
+  getMessageThread(username: string): Observable<Message[]>{
       return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
   }
 
-  sendMessage(username: string, content: string){
-      return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content})
+  sendMessage(username: string, content: string): Observable<Message>{
+      return this.http.post<Message>(this.baseUrl + 'messages', {recipientUsername: username, content});
   }
 
-  deleteMessage(id: number){
+  deleteMessage(id: number): Observable<object>{
     return this.http.delete(this.baseUrl + 'messages/' + id);
   }
 }
